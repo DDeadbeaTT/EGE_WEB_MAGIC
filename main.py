@@ -53,7 +53,8 @@ def magic(kab):
     print(kb[0])
     db.commit()
     db.close()
-    return f"kabpage of {kb[0]} | status: {st[0]} "
+    return render_template("kab.html", kb = kb, st = st)
+    #return f"kabpage of {kb[0]} | status: {st[0]} "
 
 
 
