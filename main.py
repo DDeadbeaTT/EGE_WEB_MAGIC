@@ -11,7 +11,7 @@ cursor = db.cursor()
 #    21 - конец печати
 #    55 - хотим техника
 # blyat
-# suka
+# suka commit?
 
 cursor.execute("""CREATE TABLE IF NOT EXISTS kabinets (number INTEGER, kabinet TEXT UNIQUE, status TEXT)""")
 cursor.execute("""REPLACE INTO kabinets  VALUES (1,200,0)""")
