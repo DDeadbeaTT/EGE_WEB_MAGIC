@@ -10,6 +10,7 @@ cursor = db.cursor()
 #    2 - старт печати
 #    21 - конец печати
 #    55 - хотим техника
+# blyat
 
 
 cursor.execute("""CREATE TABLE IF NOT EXISTS kabinets (number INTEGER, kabinet TEXT UNIQUE, status TEXT)""")
