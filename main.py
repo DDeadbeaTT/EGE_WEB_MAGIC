@@ -42,33 +42,36 @@ def main():
 
 @app.route('/<string:kab>', methods = ['POST', 'GET'])
 def magic(kab):
-    if request.method == ['POST']:
-        if request.form["btn" ] == 'Dolbaeb':
+    if request.method == 'POST':
+        print("POST ROBE")
+        if request.form.get('btn') == 'Dolbaeb':
             print('goodlike log 1')
             db = sqlite3.connect('database.db')
             a = kab
             cursor = db.cursor()
-            cursor.execute("UPDATE kabinets SET status = Хотим колдуна WHERE kabinet = ? ",(kab[0],))
+            print(a)
+            st = 'Хотим Техника'
+            cursor.execute("UPDATE kabinets SET status = ? WHERE kabinet = ? ",(st,a,))
             cursor.execute("SELECT * FROM kabinets").fetchall()
             kb = cursor.execute("SELECT kabinet FROM kabinets WHERE kabinet = ? ", (a,)).fetchone()
             st = cursor.execute("SELECT status FROM kabinets WHERE kabinet = ? ", (a,)).fetchone()
             db.commit()
             db.close()
 
-            return 'hui'
-        # else:
-        #     a = kab
-        #     print(kab)
-        #     db = sqlite3.connect('database.db')
-        #     cursor = db.cursor()
-        #
-        #     cursor.execute("SELECT * FROM kabinets").fetchall()
-        #     kb = cursor.execute("SELECT kabinet FROM kabinets WHERE kabinet = ? " , (a,)).fetchone()
-        #     st = cursor.execute("SELECT status FROM kabinets WHERE kabinet = ? ", (a,)).fetchone()
-        #     db.commit()
-        #     db.close()
-        #     return render_template("kab.html", kb = kb, st = st)
-        #     #return f"kabpage of {kb[0]} | status: {st[0]} "
+            return render_template("kab.html", kb=kb, st=st)
+        else:
+            a = kab
+            print(kab)
+            db = sqlite3.connect('database.db')
+            cursor = db.cursor()
+
+            cursor.execute("SELECT * FROM kabinets").fetchall()
+            kb = cursor.execute("SELECT kabinet FROM kabinets WHERE kabinet = ? " , (a,)).fetchone()
+            st = cursor.execute("SELECT status FROM kabinets WHERE kabinet = ? ", (a,)).fetchone()
+            db.commit()
+            db.close()
+            return render_template("kab.html", kb = kb, st = st)
+            #return f"kabpage of {kb[0]} | status: {st[0]} "
     else:
         a = kab
         print('hui')
