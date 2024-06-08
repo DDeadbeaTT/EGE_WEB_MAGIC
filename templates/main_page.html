@@ -6,7 +6,16 @@
 </head>
 <body>
     <div class = 'container'>
-    <div class="tile">{{all}}</div>
+        <table>
+            {% for row in all %}
+            <tr>
+                {% for cell in row%}
+                <td>{{ cell }}</td>
+                {% endfor %}
+            </tr>
+                {% endfor %}
+        </table>
+
     </div>
 <meta http-equiv="refresh" content="2">
 

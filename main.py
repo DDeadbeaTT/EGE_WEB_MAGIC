@@ -3,24 +3,13 @@ from flask import Flask, render_template, request
 db = sqlite3.connect('database.db')
 cursor = db.cursor()
 
-#  Статусы:
-#    0 - нейтральный
-#    1 - экзамен начат
-#    11 - экзамен закончен
-#    2 - старт печати
-#    21 - конец печати
-#    55 - хотим техника
-# blyat
-# suka commit?
-# push & commit suka
-
 cursor.execute("""CREATE TABLE IF NOT EXISTS kabinets (number INTEGER, kabinet TEXT UNIQUE, status TEXT)""")
-cursor.execute("""REPLACE INTO kabinets  VALUES (1,200,0)""")
-cursor.execute("""REPLACE INTO kabinets  VALUES (2,201,1)""")
-cursor.execute("""REPLACE INTO kabinets  VALUES (3,202,11)""")
-cursor.execute("""REPLACE INTO kabinets  VALUES (4,203,2)""")
-cursor.execute("""REPLACE INTO kabinets  VALUES (5,204,21)""")
-cursor.execute("""REPLACE INTO kabinets  VALUES (6,205,55)""")
+cursor.execute("""REPLACE INTO kabinets  VALUES (1,200,"нейтрал" )""")
+cursor.execute("""REPLACE INTO kabinets  VALUES (2,201,"нейтрал")""")
+cursor.execute("""REPLACE INTO kabinets  VALUES (3,202,"нейтрал")""")
+cursor.execute("""REPLACE INTO kabinets  VALUES (4,203,"нейтрал")""")
+cursor.execute("""REPLACE INTO kabinets  VALUES (5,204,"нейтрал")""")
+cursor.execute("""REPLACE INTO kabinets  VALUES (6,205,"нейтрал")""")
 
 cursor.execute("SELECT * FROM kabinets")
 print(cursor.fetchall())
@@ -34,7 +23,7 @@ app = Flask(__name__)
 def main():
     db = sqlite3.connect('database.db')
     cursor = db.cursor()
-    all = cursor.execute("SELECT * FROM kabinets").fetchall()
+    all = cursor.execute("SELECT kabinet, status FROM kabinets").fetchall()
     db.commit()
     db.close()
     return render_template("main_page.html", all = all)
