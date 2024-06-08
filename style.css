@@ -1,0 +1,28 @@
+.container table {
+  border-spacing: 1em;
+  margin: 1rem auto;
+}
+.container td {
+  padding: 1rem 1.2rem;
+  border-radius: 6px;
+  border: 1px solid red;
+}
+
+#border-separate:checked ~ table {
+  border-collapse: separate;
+}
+
+#border-collapse:checked ~ table {
+  border-collapse: collapse;
+}
+
+
+
+
+
+body {
+  text-align: center;
+}
+input {
+  margin-right: 20px;
+}
