@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,13 +18,16 @@
     </style>
 </head>
 <body>
-    <button type = "button">Начать экзамен</button>
-    <button type = "button">Завершить экзамен</button>
-    <button type = "button">Печать запущена</button>
-    <button type = "button">Печать завершена</button>
-    <button type = "button">Вызвать Техника</button>
-    <button type = "button">Вызвать Члена ГЭК</button>
-    <div class="tile">Кабинет {{kb[0]}}</div>
-    <div class="tile">Статус {{st[0]}}</div>
+    <form action="#" method="post">
+        <div class = "container">
+            <button type = "submit">Завершить экзамен</button>
+            <button type = "submit">Печать запущена</button>
+            <button type = "submit">Печать завершена</button>
+            <input type = "submit" value="Dolbaeb" name="btn">
+            <button type = "submit">Вызвать Члена ГЭК</button>
+            <div class="tile">Кабинет {{kb[0]}}</div>
+            <div class="tile">Статус {{st[0]}}</div>
+        </div>
+    </form>
 </body>
 </html>
