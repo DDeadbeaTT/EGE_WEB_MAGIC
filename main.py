@@ -37,14 +37,14 @@ def main():
     all = cursor.execute("SELECT * FROM kabinets").fetchall()
     db.commit()
     db.close()
-    return f"{all}"
+    return render_template("main_page.html", all = all)
 
 
 @app.route('/<string:kab>', methods = ['POST', 'GET'])
 def magic(kab):
     if request.method == 'POST':
         print("POST ROBE")
-        if request.form.get('btn') == 'Dolbaeb':
+        if request.form.get('btn') == 'Вызвать техника':
             print('goodlike log 1')
             db = sqlite3.connect('database.db')
             a = kab
@@ -52,6 +52,81 @@ def magic(kab):
             print(a)
             st = 'Хотим Техника'
             cursor.execute("UPDATE kabinets SET status = ? WHERE kabinet = ? ",(st,a,))
+            cursor.execute("SELECT * FROM kabinets").fetchall()
+            kb = cursor.execute("SELECT kabinet FROM kabinets WHERE kabinet = ? ", (a,)).fetchone()
+            st = cursor.execute("SELECT status FROM kabinets WHERE kabinet = ? ", (a,)).fetchone()
+            db.commit()
+            db.close()
+
+            return render_template("kab.html", kb=kb, st=st)
+        elif request.form.get('btn') == 'Начать экзамен':
+            print('goodlike log 1')
+            db = sqlite3.connect('database.db')
+            a = kab
+            cursor = db.cursor()
+            print(a)
+            st = 'Экзамен начат'
+            cursor.execute("UPDATE kabinets SET status = ? WHERE kabinet = ? ", (st, a,))
+            cursor.execute("SELECT * FROM kabinets").fetchall()
+            kb = cursor.execute("SELECT kabinet FROM kabinets WHERE kabinet = ? ", (a,)).fetchone()
+            st = cursor.execute("SELECT status FROM kabinets WHERE kabinet = ? ", (a,)).fetchone()
+            db.commit()
+            db.close()
+
+            return render_template("kab.html", kb=kb, st=st)
+        elif request.form.get('btn') == 'Завершить экзамен':
+            print('goodlike log 1')
+            db = sqlite3.connect('database.db')
+            a = kab
+            cursor = db.cursor()
+            print(a)
+            st = 'Экзамен завершен'
+            cursor.execute("UPDATE kabinets SET status = ? WHERE kabinet = ? ", (st, a,))
+            cursor.execute("SELECT * FROM kabinets").fetchall()
+            kb = cursor.execute("SELECT kabinet FROM kabinets WHERE kabinet = ? ", (a,)).fetchone()
+            st = cursor.execute("SELECT status FROM kabinets WHERE kabinet = ? ", (a,)).fetchone()
+            db.commit()
+            db.close()
+
+            return render_template("kab.html", kb=kb, st=st)
+        elif request.form.get('btn') == 'Печать запущена':
+            print('goodlike log 1')
+            db = sqlite3.connect('database.db')
+            a = kab
+            cursor = db.cursor()
+            print(a)
+            st = 'Идет печать'
+            cursor.execute("UPDATE kabinets SET status = ? WHERE kabinet = ? ", (st, a,))
+            cursor.execute("SELECT * FROM kabinets").fetchall()
+            kb = cursor.execute("SELECT kabinet FROM kabinets WHERE kabinet = ? ", (a,)).fetchone()
+            st = cursor.execute("SELECT status FROM kabinets WHERE kabinet = ? ", (a,)).fetchone()
+            db.commit()
+            db.close()
+
+            return render_template("kab.html", kb=kb, st=st)
+        elif request.form.get('btn') == 'Печать завершена':
+            print('goodlike log 1')
+            db = sqlite3.connect('database.db')
+            a = kab
+            cursor = db.cursor()
+            print(a)
+            st = 'Печать завершена'
+            cursor.execute("UPDATE kabinets SET status = ? WHERE kabinet = ? ", (st, a,))
+            cursor.execute("SELECT * FROM kabinets").fetchall()
+            kb = cursor.execute("SELECT kabinet FROM kabinets WHERE kabinet = ? ", (a,)).fetchone()
+            st = cursor.execute("SELECT status FROM kabinets WHERE kabinet = ? ", (a,)).fetchone()
+            db.commit()
+            db.close()
+
+            return render_template("kab.html", kb=kb, st=st)
+        elif request.form.get('btn') == 'Вызвать Члена ГЭК':
+            print('goodlike log 1')
+            db = sqlite3.connect('database.db')
+            a = kab
+            cursor = db.cursor()
+            print(a)
+            st = 'Хотим член'
+            cursor.execute("UPDATE kabinets SET status = ? WHERE kabinet = ? ", (st, a,))
             cursor.execute("SELECT * FROM kabinets").fetchall()
             kb = cursor.execute("SELECT kabinet FROM kabinets WHERE kabinet = ? ", (a,)).fetchone()
             st = cursor.execute("SELECT status FROM kabinets WHERE kabinet = ? ", (a,)).fetchone()
